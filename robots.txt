@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # TODO: Add the full URL to your sitemap.xml file once you have one.
-# Sitemap: https://your-domain.com/sitemap.xml
+# Sitemap: https://themonkeyboy.fun/sitemap.xml

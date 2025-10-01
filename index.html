@@ -3,30 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KDG The Monkey Boy | AI Video Generation Tool with Veo</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="An advanced web tool to generate high-quality videos from images and text prompts using Google's Veo AI model. Features batch processing, parallel generation with multiple API keys, and AI-powered prompt assistance.">
-  <meta name="keywords" content="AI video generator, Veo model, text to video, image to video, Google Gemini, KDG The Monkey Boy, AI tool, video creation, batch processing">
-  <meta name="author" content="KDG The Monkey Boy">
-  <link rel="canonical" href="https://example.com" /> <!--! TODO: Replace with your domain URL after deploying -->
+  
+  <!-- SEO & Marketing Meta Tags -->
+  <title>KDG The Monkey Boy | AI Video Generation with Google Veo</title>
+  <meta name="description" content="Effortlessly generate high-quality videos from images and prompts using Google's Veo model. Features batch processing, parallel generation, and automated prompt creation.">
+  <meta name="keywords" content="ai video generator, video generation, image to video, text to video, google veo, kdg the monkey boy, ai tools, content creation">
+  <link rel="canonical" href="https://themonkeyboy.fun/">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://example.com"> <!--! TODO: Replace with your domain URL after deploying -->
-  <meta property="og:title" content="KDG The Monkey Boy | AI Video Generation Tool">
-  <meta property="og:description" content="Effortlessly generate stunning videos from images and prompts using Google's Veo model. Features batch processing, parallel generation, and AI prompt assistance.">
-  <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTFhMWQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0ODAsIDE1MCkgc2NhbGUoMTUpIj4KICAgIDxwYXRoIGZpbGw9IiNENEFGMzciIGQ9Ik0xMiwyQTEwLDEwIDAgMCwwIDIsMTJBMTAsMTAgMCAwLDAgMTIsMjJBMTAsMTAgMCAwLDAgMjIsMTJBMTAsMTAgMCAwLDAgMTIsMk05LDlBMS41LDEuNSAwIDAsMSAxMC41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDEyQTEuNSwxLjUgMCAwLDEgNy41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDlNMTUsOUExLjUsMS41IDAgMCwxIDE2LjUsMTAuNUExLjUsMS41IDAgMCwxIDE1LDEyQTEuNSwxLjUgMCAwLDEgMTMuNSwxMC41QTEuNSwxLjUgMCAwLDEgMTUsOU0xMiwxNEMxNC42NywxNCAxNi45LDE1LjgyIDE3LjUsMTguMjVMMTcuMjcsMTguNUMxNi4zMiwxNy40MiAxNC40NiwxNi41IDEyLDE2LjVDOS41NCwxNi41IDcuNjgsMTcuNDIgNi43MywxOC41TDYuNSwxOC4yNUM3LjEsMTUuODIgOS4zMywxNCAxMiwyNFoiIC8+CiAgPC9nPgogIDx0ZXh0IHg9IjYwMCIgeT0iNDQwIiBmb250LWZhbWlseT0iT3JiaXRyb24sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZpbGw9IiNENEFGMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRleHQtdHJhbnNmb3JtPSJ1cHBlcmNhc2UiPktERyBUSEUgTU9OS0VZIEJPWTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjQ5NSIgZm9udC1mYW1pbHk9Ikdvb2dsZSBTYW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM2IiBmaWxsPSIjYmRjM2M3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BSSBWaWRlbyBHZW5lcmF0aW9uIHdpdGggVmVvPC90ZXh0Pgo8L3N2Zz4=">
+  <meta property="og:url" content="https://themonkeyboy.fun/">
+  <meta property="og:title" content="KDG The Monkey Boy | AI Video Generation with Google Veo">
+  <meta property="og:description" content="Effortlessly generate high-quality videos from images and prompts using Google's Veo model.">
+  <!-- TODO: Replace with a real URL to an eye-catching image (1200x630px) -->
+  <meta property="og:image" content="https://themonkeyboy.fun/og-image.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://example.com"> <!--! TODO: Replace with your domain URL after deploying -->
-  <meta property="twitter:title" content="KDG The Monkey Boy | AI Video Generation Tool">
-  <meta property="twitter:description" content="Effortlessly generate stunning videos from images and prompts using Google's Veo model. Features batch processing, parallel generation, and AI prompt assistance.">
-  <meta property="twitter:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTFhMWQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0ODAsIDE1MCkgc2NhbGUoMTUpIj4KICAgIDxwYXRoIGZpbGw9IiNENEFGMzciIGQ9Ik0xMiwyQTEwLDEwIDAgMCwwIDIsMTJBMTAsMTAgMCAwLDAgMTIsMjJBMTAsMTAgMCAwLDAgMjIsMTJBMTAsMTAgMCAwLDAgMTIsMk05LDlBMS41LDEuNSAwIDAsMSAxMC41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDEyQTEuNSwxLjUgMCAwLDEgNy41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDlNMTUsOUExLjUsMS41IDAgMCwxIDE2LjUsMTAuNUExLjUsMS41IDAgMCwxIDE1LDEyQTEuNSwxLjUgMCAwLDEgMTMuNSwxMC41QTEuNSwxLjUgMCAwLDEgMTUsOU0xMiwxNEMxNC42NywxNCAxNi45LDE1LjgyIDE3LjUsMTguMjVMMTcuMjcsMTguNUMxNi4zMiwxNy40MiAxNC40NiwxNi41IDEyLDE2LjVDOS41NCwxNi41IDcuNjgsMTcuNDIgNi43MywxOC41TDYuNSwxOC4yNUM3LjEsMTUuODIgOS4zMywxNCAxMiwyNFoiIC8+CiAgPC9nPgogIDx0ZXh0IHg9IjYwMCIgeT0iNDQwIiBmb250LWZhbWlseT0iT3JiaXRyb24sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZpbGw9IiNENEFGMzciIHRleHQtYW5jaGJyPSJtaWRkbGUiIHRleHQtdHJhbnNmb3JtPSJ1cHBlcmNhc2UiPktERyBUSEUgTU9OS0VZIEJPWTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjQ5NSIgZm9udC1mYW1pbHk9Ikdvb2dsZSBTYW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM2IiBmaWxsPSIjYmRjM2M3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BSSBWaWRlbyBHZW5lcmF0aW9uIHdpdGggVmVvPC90ZXh0Pgo8L3N2Zz4=">
+  <meta property="twitter:url" content="https://themonkeyboy.fun/">
+  <meta property="twitter:title" content="KDG The Monkey Boy | AI Video Generation with Google Veo">
+  <meta property="twitter:description" content="Effortlessly generate high-quality videos from images and prompts using Google's Veo model.">
+  <!-- TODO: Replace with a real URL to an eye-catching image (1200x630px) -->
+  <meta property="twitter:image" content="https://themonkeyboy.fun/og-image.png">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "KDG The Monkey Boy",
+    "description": "Effortlessly generate high-quality videos from images and prompts using Google's Veo model. Features batch processing, parallel generation with multiple API keys, and automated prompt creation.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Web",
+    "url": "https://themonkeyboy.fun/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  }
+  </script>
 
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0Q0QUYzNyIgZD0iTTEyLDJBMTAsMTAgMCAwLDAgMiwxMkExMCwxMCAwIDAsMCAxMiwyMkExMCwxMCAwIDAsMCAyMiwyMkExMCwxMCAwIDAsMCAxMiwyTTksOUEyLjUsMS41IDAgMCwxIDEwLjUsMTAuNUExLjUsMS41IDAgMCwxIDksMTJBMS41LDEuNSAwIDAsMSA3LjUsMTAuNUExLjUsMS41IDAgMCwxIDksOU0xNSw5QTEuNSwxLjUgMCAwLDEgMTYuNSwxMC41QTEuNSwxLjUgMCAwLDEgMTUsMTJBMS41LDEuNSAwIDAsMSAxMy41LDEwLjVBMS41LDEuNSAwIDAsMSAxNSw5TTEyLDE0QzE0LjY3LDE0IDE2LjksMTUuODIgMTcuNSwxOC4yNUwxNy4yNywxOC41QzE2LjMyLDE3LjQyIDE0LjY2LDE2LjUgMTIsMTYuNUM5LjU0LDE2LjUgNy42OCwxNy40MiA2LjczLDE4LjVMNi41LDE4LjI1QzcuMSwxNS44MiA5LjMzLDE0IDEyLDE0WiIgLz48L3N2Zz4=">
-  <link rel="stylesheet" href="index.css">
+  <script async="async" data-cfasync="false" src="//niecesprivilegelimelight.com/ddd559f2d98723b5096dc35a62d88870/invoke.js"></script>
   <script type="importmap">
     {
       "imports": {
@@ -34,142 +51,1238 @@
       }
     }
   </script>
-  <!-- Structured Data for Rich Search Results -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "KDG The Monkey Boy - Veo Video Generation",
-    "description": "An advanced web tool to generate high-quality videos from images and text prompts using Google's Veo AI model. Features batch processing, parallel generation, and AI-powered prompt assistance.",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "Any (Web Application)",
-    "offers": {
-      "@type": "Offer",
-      "price": "0.00",
-      "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "152"
-    },
-    "creator": {
-       "@type": "Person",
-       "name": "KDG The Monkey Boy"
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+    :root {
+      --gold: #D4AF37;
+      --iron-red: #c0392b;
+      --dark-bg: #1a1a1d;
+      --medium-bg: #2c2c34;
+      --light-text: #ecf0f1;
+      --medium-text: #bdc3c7;
+      --dark-text: #95a5a6;
+      --border-color: #444;
+      --success-color: #2ecc71;
+      --error-color: #e74c3c;
     }
-  }
-  </script>
+
+    body {
+      font-family: 'Google Sans', 'Roboto', sans-serif, system-ui;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8em;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--gold);
+      text-align: center;
+      text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 1em;
+      color: var(--medium-text);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: var(--medium-text);
+    }
+
+    a {
+      color: var(--iron-red);
+    }
+
+    .api-key-container {
+      margin-bottom: 25px;
+      background-color: var(--medium-bg);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .api-key-container label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    .api-key-input-wrapper {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 5px;
+    }
+
+    input, textarea, select {
+      font: inherit;
+      border-radius: 8px;
+      background-color: #252528;
+      border: 1px solid var(--border-color);
+      color: var(--light-text);
+      padding: 12px 15px;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    }
+
+    #api-key-input {
+      flex-grow: 1;
+      resize: vertical;
+    }
+
+    #api-key-input.keys-hidden {
+      -webkit-text-security: disc;
+      text-security: disc;
+    }
+    
+    .api-key-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .helper-text {
+      font-size: 0.8em;
+      color: var(--dark-text);
+      margin: 0;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      border: 2px solid var(--gold);
+    }
+
+    #quota-error {
+      display: none;
+      background-color: rgba(192, 57, 43, 0.2);
+      border: 1px solid #c0392b;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      color: #f2a29b;
+    }
+
+    .main-input-area {
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+
+    button, select {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    #generate-button {
+      background-color: var(--iron-red);
+      color: white;
+      box-shadow: 0 0 10px rgba(192, 57, 43, 0.5);
+    }
+
+    #generate-button:hover:not(:disabled) {
+      background-color: #e74c3c;
+      box-shadow: 0 0 15px rgba(231, 76, 60, 0.7);
+    }
+
+    #generate-button.cancel-button {
+      background-color: #f39c12;
+      box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+    }
+
+    #generate-button.cancel-button:hover:not(:disabled) {
+      background-color: #f1c40f;
+      box-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
+    }
+
+    #save-api-key-button,
+    #clear-log-button,
+    .download-button {
+      background-color: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+
+    #save-api-key-button:hover:not(:disabled),
+    #clear-log-button:hover:not(:disabled),
+    .download-button:hover:not(:disabled) {
+        background-color: var(--gold);
+        color: var(--dark-bg);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+    
+    #toggle-api-key-visibility-button {
+      background-color: transparent;
+      color: var(--medium-text);
+      border: 2px solid var(--medium-text);
+    }
+
+    #toggle-api-key-visibility-button:hover:not(:disabled) {
+        background-color: var(--medium-text);
+        color: var(--dark-bg);
+        box-shadow: 0 0 10px rgba(189, 195, 199, 0.5);
+    }
+
+    button:disabled, select:disabled {
+      background-color: #444;
+      color: #777;
+      cursor: not-allowed;
+      border-color: #555 !important;
+      box-shadow: none;
+    }
+
+    .drop-zone {
+      border: 2px dashed var(--gold);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+      color: var(--dark-text);
+      background-color: var(--medium-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 150px;
+    }
+    
+    .drop-zone.has-files {
+        padding: 20px;
+        justify-content: flex-start;
+        cursor: default;
+    }
+
+    .drop-zone.drag-over {
+      border-color: var(--iron-red);
+      background-color: rgba(192, 57, 43, 0.1);
+      box-shadow: inset 0 0 15px rgba(192, 57, 43, 0.4);
+    }
+
+    .drop-zone p {
+      margin: 0;
+      font-size: 1.1em;
+    }
+
+    .drop-zone label {
+      color: var(--gold);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+    }
+
+    .drop-zone label:hover {
+      color: var(--iron-red);
+      border-color: var(--iron-red);
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    #status {
+      margin-top: 20px;
+      color: var(--gold);
+      text-align: center;
+      font-size: 1.1em;
+      min-height: 24px; /* prevent layout shifts */
+    }
+
+    .select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .select-wrapper label {
+      font-weight: 500;
+      color: var(--medium-text);
+    }
+
+    select {
+      font-weight: 500;
+      border: 2px solid var(--gold);
+      background-color: var(--medium-bg);
+      color: var(--gold);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1em;
+      padding-right: 2.5rem;
+    }
+
+    select:hover:not(:disabled) {
+      background-color: #34343d;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+    
+    #file-queue-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 10px;
+      max-height: 450px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    #file-queue-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #file-queue-container::-webkit-scrollbar-track {
+      background: #252528;
+      border-radius: 4px;
+    }
+
+    #file-queue-container::-webkit-scrollbar-thumb {
+      background-color: var(--border-color);
+      border-radius: 4px;
+      border: 2px solid #252528;
+    }
+
+    #file-queue-container::-webkit-scrollbar-thumb:hover {
+      background-color: var(--dark-text);
+    }
+
+    .queue-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        background-color: #333338;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 5px solid var(--gold);
+    }
+    
+    .queue-item[data-status="processing"] { border-left-color: #f1c40f; }
+    .queue-item[data-status="complete"] { border-left-color: var(--success-color); }
+    .queue-item[data-status="error"] { border-left-color: var(--error-color); }
+    .queue-item[data-status="skipped"] { border-left-color: var(--medium-text); }
+
+
+    .queue-item-thumbnail {
+        width: 60px;
+        height: 60px;
+        border-radius: 6px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .queue-item-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .queue-item-info {
+        overflow: hidden;
+    }
+
+    .queue-item-name {
+        margin: 0;
+        font-size: 0.9em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--light-text);
+    }
+
+    .queue-item-status {
+        margin: 0;
+        font-size: 0.8em;
+        color: var(--medium-text);
+    }
+    
+    .queue-item[data-status="complete"] .queue-item-status { color: var(--success-color); }
+    .queue-item[data-status="error"] .queue-item-status { color: var(--error-color); }
+
+    .item-prompt-input {
+      width: 100%;
+      resize: vertical;
+      min-height: 60px;
+      box-sizing: border-box;
+      font-size: 0.95em;
+      border-radius: 6px;
+      background-color: #252528;
+      border: 1px solid var(--border-color);
+      color: var(--light-text);
+      padding: 10px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .item-prompt-input:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+    }
+
+    .item-prompt-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .item-generate-prompt-button {
+        padding: 8px 16px;
+        font-size: 0.8em;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.2s ease-in-out;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background-color: transparent;
+        color: var(--gold);
+        border: 2px solid var(--gold);
+    }
+
+    .item-generate-prompt-button:hover:not(:disabled) {
+        background-color: var(--gold);
+        color: var(--dark-bg);
+    }
+
+    .item-generate-prompt-button:disabled {
+        background-color: #444;
+        color: #777;
+        cursor: not-allowed;
+        border-color: #555 !important;
+    }
+
+    .remove-item-button {
+        background-color: transparent;
+        color: var(--dark-text);
+        border: none;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        padding: 0;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s, color 0.2s;
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+
+    .remove-item-button:hover {
+        background-color: var(--iron-red);
+        color: white;
+    }
+    
+    .log-container {
+      margin: 25px 0;
+      background-color: var(--medium-bg);
+      border-radius: 8px;
+      padding: 15px 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .log-container h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+
+    #activity-log {
+      height: 200px;
+      overflow-y: auto;
+      background-color: #252528;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.85em;
+      color: var(--medium-text);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    #clear-log-button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 0.85em;
+    }
+
+    #results-container {
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .result-card {
+        background-color: var(--medium-bg);
+        border-radius: 8px;
+        padding: 15px;
+        border: 1px solid var(--border-color);
+    }
+    
+    .result-card h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        color: var(--gold);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .result-card .video-actions {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .main-input-area {
+        flex-direction: column;
+      }
+    }
+  </style>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body>
-  <div id="local-file-warning">
-    <h2>Aplikasi Tidak Dapat Dijalankan Langsung Dari File</h2>
-    <p>Karena alasan keamanan, browser modern memblokir fitur seperti akses API dan penyimpanan lokal saat Anda membuka file HTML secara langsung. Ini bukan kesalahan pada aplikasi, tetapi tindakan keamanan standar.</p>
-    <h3>Cara Memperbaikinya (Mudah!)</h3>
-    <p>Anda perlu menyajikan file ini dari server web lokal sederhana. Berikut adalah dua cara umum:</p>
-    <div class="instructions">
-      <h4>Opsi 1: Menggunakan Python</h4>
-      <p>Jika Anda memiliki Python, buka terminal atau command prompt di direktori file ini dan jalankan:</p>
-      <code>python -m http.server 8000</code>
-      <p>Kemudian, buka browser Anda ke: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+  <h1>KDG The Monkey Boy</h1>
+  <p class="tagline">veo - video generation</p>
+  <p>Add one or more images, provide a prompt for each, and generate videos sequentially. If you don't provide a prompt, one will be generated for you automatically.</p>
+
+  <div class="api-key-container">
+    <label for="api-key-input">API Keys (Optional, one per line)</label>
+    <div class="api-key-input-wrapper">
+      <textarea id="api-key-input" rows="4" placeholder="Enter one or more API keys, each on a new line. Keys will be tried in order if one runs out of quota." aria-label="API Keys Input"></textarea>
+      <div class="api-key-buttons">
+        <button id="toggle-api-key-visibility-button" title="Show API Keys">Show</button>
+        <button id="save-api-key-button">Save</button>
+      </div>
     </div>
-    <div class="instructions">
-      <h4>Opsi 2: Menggunakan Node.js</h4>
-      <p>Jika Anda memiliki Node.js, buka terminal di direktori file ini dan jalankan:</p>
-      <code>npx serve</code>
-      <p>Terminal akan memberi Anda alamat lokal untuk dibuka, biasanya <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+    <p id="api-key-status" class="helper-text">Checking API key status...</p>
+  </div>
+
+  <div class="main-input-area">
+    <div id="drop-zone" class="drop-zone">
+      <div class="drop-zone-prompt">
+        <p>Drag & drop image(s) here, or <label for="file-input">browse files</label>.</p>
+      </div>
+      <input id="file-input" type="file" accept="image/*" multiple />
+      <div id="file-queue-container"></div>
     </div>
-    <p>Setelah Anda menjalankan aplikasi dari alamat <code>http://localhost</code>, pesan ini akan hilang dan aplikasi akan berfungsi dengan benar.</p>
+  </div>
+
+  <div class="controls">
+    <button id="generate-button">Generate</button>
+    <div class="select-wrapper">
+      <label for="aspect-ratio-select">Aspect Ratio</label>
+      <select id="aspect-ratio-select">
+        <option value="16:9" selected>Landscape (16:9)</option>
+        <option value="9:16">Story / Reel (9:16)</option>
+        <option value="4:5">Instagram Post (4:5)</option>
+        <option value="1:1">Square (1:1)</option>
+      </select>
+    </div>
+    <div class="select-wrapper">
+      <label for="quality-select">Video Quality</label>
+      <select id="quality-select">
+        <option value="high" selected>High</option>
+        <option value="standard">Standard</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="quota-error">
+    <p>You have exceeded your generation quota, or your API key is invalid.</p>
+    <p>Please check your API key and try again. If you are using a custom key, ensure it is correct. If the issue persists, check your project's quota on Google AI Studio.</p>
   </div>
   
-  <div id="app-container">
-    <h1>KDG The Monkey Boy</h1>
-    <p class="tagline">Advanced AI Video Generation with Veo</p>
-    <p>Batch-process images and prompts to generate high-quality videos. Use multiple API keys for parallel processing and leverage AI to auto-generate or improve your creative prompts.</p>
+  <p id="status">Ready.</p>
 
-    <div class="api-key-container">
-      <label for="api-key-input">API Keys (one per line for parallel processing)</label>
-      <div class="api-key-input-wrapper">
-        <textarea id="api-key-input" rows="4" placeholder="Enter one or more Gemini API keys, one per line" aria-label="API Key Input"></textarea>
-        <div class="api-key-buttons">
-          <button id="toggle-api-key-visibility-button" title="Toggle API Key Visibility">Show</button>
-          <button id="save-api-key-button">Save</button>
-        </div>
-      </div>
-      <p id="api-key-status" class="helper-text">Checking API key status...</p>
-    </div>
-
-    <div class="main-input-area">
-      <div id="drop-zone" class="drop-zone">
-        <div class="drop-zone-prompt">
-          <p>Drag & drop image(s) here, or <label for="file-input">browse files</label>.</p>
-        </div>
-        <input id="file-input" type="file" accept="image/*" multiple />
-        <div id="file-queue-container"></div>
-      </div>
-    </div>
-
-    <div class="controls">
-      <button id="generate-button">Generate</button>
-      <button id="generate-all-prompts-button">Generate All Prompts</button>
-      <button id="download-all-button" style="display: none;">Download All</button>
-      <button id="clear-completed-button" style="display: none;">Clear Completed</button>
-      <div class="select-wrapper">
-        <label for="aspect-ratio-select">Aspect Ratio</label>
-        <select id="aspect-ratio-select">
-          <option value="16:9" selected>Landscape (16:9)</option>
-          <option value="9:16">Story / Reel (9:16)</option>
-          <option value="4:5">Instagram Post (4:5)</option>
-          <option value="1:1">Square (1:1)</option>
-        </select>
-      </div>
-      <div class="select-wrapper">
-        <label for="quality-select">Video Quality</label>
-        <select id="quality-select">
-          <option value="high" selected>High</option>
-          <option value="standard">Standard</option>
-        </select>
-      </div>
-    </div>
-
-    <div id="quota-error">
-      <p><strong>Generation Failed: API Key Problem</strong></p>
-      <p>This error usually means your API key is not configured correctly for this website, especially after deploying.</p>
-      <p><strong>To fix this, you MUST add this website's domain to your API key's "HTTP referrers" list in your Google Cloud or AI Studio settings.</strong></p>
-      <p>The domain you need to add is: <code><span id="quota-error-domain">your-domain.com</span></code></p>
-      <p>Please update your key on the <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio</a> and try again.</p>
-    </div>
-    
-    <p id="status">Ready.</p>
-
-    <div id="activity-log-container">
-      <h2>Activity Log</h2>
-      <div id="log-entries"></div>
-    </div>
-
-    <div id="results-container">
-      <!-- Video and ad cards will be dynamically injected here -->
-    </div>
-    
-    <footer>
-      <p>&copy; 2024 KDG The Monkey Boy. All Rights Reserved.</p>
-    </footer>
+  <div class="log-container">
+    <h3>Activity Log</h3>
+    <pre id="activity-log"></pre>
+    <button id="clear-log-button">Clear Log</button>
   </div>
 
-  <!--! 
-    MARKETING & ANALYTICS
-    Tempelkan cuplikan skrip analitik Anda (misalnya, Google Analytics) di sini.
-    Ini akan membantu Anda melacak pengunjung dan memahami bagaimana mereka menggunakan aplikasi.
-  -->
-  <!-- Contoh Google Analytics:
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  -->
+  <div id="results-container"></div>
 
-  <script type="module" src="index.tsx"></script>
+  <script type="module">
+    /* tslint:disable */
+    /**
+     * @license
+     * Copyright 2025 Google LLC
+     * SPDX-License-Identifier: Apache-2.0
+     */
+    import { GoogleGenAI } from '@google/genai';
+
+    // --- DOM Elements ---
+    const apiKeyInput = document.querySelector('#api-key-input');
+    const saveApiKeyButton = document.querySelector('#save-api-key-button');
+    const toggleApiKeyVisibilityButton = document.querySelector('#toggle-api-key-visibility-button');
+    const apiKeyStatusEl = document.querySelector('#api-key-status');
+    const fileInput = document.querySelector('#file-input');
+    const dropZoneEl = document.querySelector('#drop-zone');
+    const dropZonePrompt = document.querySelector('.drop-zone-prompt');
+    const fileQueueContainer = document.querySelector('#file-queue-container');
+    const generateButton = document.querySelector('#generate-button');
+    const aspectRatioSelect = document.querySelector('#aspect-ratio-select');
+    const qualitySelect = document.querySelector('#quality-select');
+    const quotaErrorEl = document.querySelector('#quota-error');
+    const resultsContainer = document.querySelector('#results-container');
+    const statusEl = document.querySelector('#status');
+    const activityLogEl = document.querySelector('#activity-log');
+    const clearLogButton = document.querySelector('#clear-log-button');
+
+    const API_KEY_STORAGE_KEY = 'user_gemini_api_key';
+    let fileQueue = [];
+    let isGenerating = false;
+    let apiKeys = [];
+    let adAdded = false;
+
+    // --- Utility Functions ---
+
+    /**
+     * Logs a message to the activity log panel.
+     * @param {string} message The message to log.
+     */
+    function logActivity(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      const logMessage = `[${timestamp}] ${message}\n`;
+      activityLogEl.textContent += logMessage;
+      activityLogEl.scrollTop = activityLogEl.scrollHeight;
+    }
+
+    /**
+     * A delay that can be interrupted by setting `isGenerating` to false.
+     * @param {number} ms The total time to wait.
+     * @param {number} interval The interval at which to check for cancellation.
+     * @returns {Promise<void>} A promise that resolves after the delay or rejects on cancellation.
+     */
+    function interruptibleDelay(ms, interval = 500) {
+      return new Promise((resolve, reject) => {
+        const startTime = Date.now();
+        const check = () => {
+          if (!isGenerating) {
+            reject(new Error('Generation cancelled by user.'));
+            return;
+          }
+          if (Date.now() - startTime >= ms) {
+            resolve();
+          } else {
+            setTimeout(check, Math.min(interval, ms - (Date.now() - startTime)));
+          }
+        };
+        check();
+      });
+    }
+
+    function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const dataUrl = reader.result;
+          resolve(dataUrl.split(',')[1]);
+        };
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    function downloadFile(url, filename) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // --- Core Logic ---
+
+    async function generateContent(genConfig, apiKey) {
+        if (!apiKey) {
+          throw new Error('API key not provided for content generation.');
+        }
+        try {
+            const ai = new GoogleGenAI({ apiKey });
+            const response = await ai.models.generateContent(genConfig);
+            return response;
+        } catch (e) {
+            console.error('Error during generateContent:', e);
+            throw e;
+        }
+    }
+
+    async function generateVideo(prompt, imageBytes, mimeType, apiKey) {
+      if (!apiKey) {
+        throw new Error('API key not provided for generation attempt.');
+      }
+      const ai = new GoogleGenAI({ apiKey });
+
+      const config = {
+        model: 'veo-2.0-generate-001',
+        prompt,
+        config: {
+          numberOfVideos: 1,
+          aspectRatio: aspectRatioSelect.value,
+          quality: qualitySelect.value,
+        },
+      };
+
+      if (imageBytes) {
+        config.image = { imageBytes, mimeType };
+      }
+
+      let operation = await ai.models.generateVideos(config);
+
+      while (!operation.done) {
+        await interruptibleDelay(10000); // This will throw if cancelled
+        operation = await ai.operations.getVideosOperation({ operation });
+      }
+
+      const videos = operation.response?.generatedVideos;
+      if (!videos || videos.length === 0) {
+        throw new Error('No videos were generated.');
+      }
+      
+      const firstVideo = videos[0];
+      if (firstVideo.video?.uri && apiKey) {
+        const url = `${firstVideo.video.uri}&key=${apiKey}`;
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch video: ${res.statusText}`);
+        }
+        return res.blob();
+      } else {
+        throw new Error('Generated video data is incomplete.');
+      }
+    }
+    
+    function updateGenerateButtonState() {
+        if (isGenerating) return; // Don't touch if it's a Cancel button
+        const hasProcessableItems = fileQueue.length > 0;
+        generateButton.disabled = !hasProcessableItems;
+    }
+
+    function setUIState(generating) {
+      fileInput.disabled = generating;
+      dropZoneEl.style.pointerEvents = generating ? 'none' : 'auto';
+      dropZoneEl.style.opacity = generating ? '0.6' : '1';
+      aspectRatioSelect.disabled = generating;
+      qualitySelect.disabled = generating;
+      apiKeyInput.disabled = generating;
+      saveApiKeyButton.disabled = generating;
+      toggleApiKeyVisibilityButton.disabled = generating;
+
+      if (generating) {
+        generateButton.textContent = 'Cancel';
+        generateButton.classList.add('cancel-button');
+        generateButton.disabled = false;
+      } else {
+        generateButton.textContent = 'Generate';
+        generateButton.classList.remove('cancel-button');
+        updateGenerateButtonState();
+      }
+      
+      document.querySelectorAll('.item-prompt-input, .item-generate-prompt-button, .remove-item-button').forEach(el => {
+        el.disabled = generating;
+      });
+    }
+
+    function createVideoResult(file, videoBlob) {
+        const videoObjectUrl = URL.createObjectURL(videoBlob);
+        
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        
+        const title = document.createElement('h3');
+        title.textContent = file.name;
+        card.appendChild(title);
+
+        const video = document.createElement('video');
+        video.src = videoObjectUrl;
+        video.autoplay = true;
+        video.controls = true;
+        video.loop = true;
+        video.muted = true;
+        card.appendChild(video);
+        
+        const actions = document.createElement('div');
+        actions.className = 'video-actions';
+        
+        const downloadButton = document.createElement('button');
+        downloadButton.className = 'download-button';
+        downloadButton.textContent = 'Download Video';
+        downloadButton.addEventListener('click', () => {
+            downloadFile(videoObjectUrl, `video_for_${file.name}.mp4`);
+            downloadButton.textContent = 'Downloaded';
+            setTimeout(() => {
+                downloadButton.textContent = 'Download Video';
+            }, 3000);
+        });
+        actions.appendChild(downloadButton);
+        card.appendChild(actions);
+        
+        resultsContainer.appendChild(card);
+        
+        if (!adAdded) {
+            const adCard = document.createElement('div');
+            adCard.className = 'result-card';
+
+            const adContainer = document.createElement('div');
+            adContainer.id = 'container-ddd559f2d98723b5096dc35a62d88870';
+            
+            adCard.appendChild(adContainer);
+            resultsContainer.appendChild(adCard);
+            
+            adAdded = true;
+            logActivity('Native ad element injected.');
+        }
+    }
+
+    /** Atomically gets the next item from the queue and marks it as processing */
+    function getNextQueuedItem() {
+        const item = fileQueue.find(i => i.status === 'queued' || i.status === 'error');
+        if (item) {
+            item.status = 'processing'; // Mark it immediately to prevent other workers from grabbing it
+        }
+        return item;
+    }
+
+    async function runWorker(workerId, apiKey, maxWorkers) {
+        const workerPrefix = `[Worker ${workerId + 1}/${maxWorkers}]`;
+
+        while (isGenerating) {
+            const item = getNextQueuedItem();
+            if (!item) {
+                break; // No more items to process, worker is done
+            }
+            logActivity(`${workerPrefix} Picked up task for ${item.file.name}.`);
+            
+            try {
+                // Step 1: Generate prompt if missing
+                if (!item.prompt || item.prompt.trim() === '') {
+                    statusEl.innerText = `${workerPrefix} Generating prompt for ${item.file.name}...`;
+                    logActivity(`${workerPrefix} Auto-generating prompt for ${item.file.name}...`);
+                    renderQueue();
+                    try {
+                        const textPart = { text: 'Describe this image for a video generation model. The description should be vivid, detailed, and focus on potential motion.' };
+                        const imagePart = { inlineData: { mimeType: item.file.type, data: item.base64 } };
+                        const response = await generateContent({
+                            model: 'gemini-2.5-flash',
+                            contents: { parts: [imagePart, textPart] },
+                        }, apiKey);
+                        item.prompt = response.text.trim();
+                        logActivity(`${workerPrefix} Prompt generated successfully for ${item.file.name}.`);
+                    } catch (promptError) {
+                        if (!isGenerating) break; // User cancelled during prompt generation
+                        console.error(`${workerPrefix} Error auto-generating prompt for ${item.file.name}:`, promptError);
+                        throw new Error('Auto-prompt failed: ' + promptError.message);
+                    }
+                }
+                renderQueue(); // Update UI with the new prompt
+
+                // Step 2: Generate video
+                statusEl.innerText = `${workerPrefix} Generating video for ${item.file.name}...`;
+                logActivity(`${workerPrefix} Generating video for ${item.file.name}...`);
+                const videoBlob = await generateVideo(item.prompt, item.base64, item.file.type, apiKey);
+                createVideoResult(item.file, videoBlob);
+                item.status = 'complete';
+                logActivity(`${workerPrefix} Successfully completed task for ${item.file.name}.`);
+
+            } catch (e) {
+                if (!isGenerating) break; // User cancelled
+                console.error(`${workerPrefix} Error processing ${item.file.name}:`, e);
+                logActivity(`${workerPrefix} ERROR processing ${item.file.name}: ${e.message}`);
+                item.status = 'error';
+                item.error = e.message;
+                quotaErrorEl.style.display = 'block';
+            } finally {
+                renderQueue();
+            }
+        }
+    }
+
+    async function startGeneration() {
+      if (apiKeys.length === 0) {
+        const msg = 'API Key not configured.';
+        statusEl.innerText = msg;
+        logActivity(`ERROR: ${msg}`);
+        quotaErrorEl.innerHTML = '<p>The API_KEY environment variable is not set, and no custom keys are saved.</p>';
+        quotaErrorEl.style.display = 'block';
+        return;
+      }
+      
+      const itemsToProcess = fileQueue.filter(item => item.status !== 'complete' && item.status !== 'processing');
+      if (itemsToProcess.length === 0) {
+        statusEl.innerText = 'All items have been processed. Add new images to generate.';
+        logActivity('Generate button clicked, but no new items to process.');
+        return;
+      }
+
+      isGenerating = true;
+      setUIState(true);
+      quotaErrorEl.style.display = 'none';
+      resultsContainer.innerHTML = '';
+      adAdded = false;
+
+      // Reset status for items that are not complete
+      fileQueue.forEach(item => {
+          if (item.status !== 'complete') {
+            item.status = 'queued';
+            item.error = undefined;
+          }
+      });
+      renderQueue();
+
+      const maxConcurrentJobs = apiKeys.length;
+      const startMsg = `Starting generation with ${maxConcurrentJobs} worker(s)...`;
+      statusEl.innerText = startMsg;
+      logActivity(startMsg);
+      
+      const workers = [];
+      for (let i = 0; i < maxConcurrentJobs; i++) {
+        workers.push(runWorker(i, apiKeys[i], maxConcurrentJobs));
+      }
+
+      await Promise.all(workers);
+
+      if (!isGenerating) {
+        statusEl.innerText = 'Generation cancelled.';
+        logActivity('Generation process was cancelled.');
+        fileQueue.forEach(i => {
+          if (i.status === 'processing') i.status = 'queued';
+        });
+      } else {
+        const failedCount = fileQueue.filter(i => i.status === 'error').length;
+        if (failedCount > 0) {
+            const finishMsg = `Batch processing complete with ${failedCount} error(s).`;
+            statusEl.innerText = finishMsg;
+            logActivity(finishMsg);
+        } else {
+            const finishMsg = 'Batch processing complete.';
+            statusEl.innerText = finishMsg;
+            logActivity(finishMsg);
+        }
+      }
+      
+      isGenerating = false;
+      setUIState(false);
+      renderQueue();
+    }
+    
+    // --- UI and Event Listeners ---
+    
+    function renderQueue() {
+      fileQueueContainer.innerHTML = '';
+      if (fileQueue.length > 0) {
+        dropZoneEl.classList.add('has-files');
+        dropZonePrompt.style.display = 'none';
+      } else {
+        dropZoneEl.classList.remove('has-files');
+        dropZonePrompt.style.display = 'block';
+      }
+
+      fileQueue.forEach(item => {
+          const itemEl = document.createElement('div');
+          itemEl.className = 'queue-item';
+          itemEl.dataset.id = item.id;
+          itemEl.dataset.status = item.status;
+
+          const thumb = document.createElement('img');
+          thumb.className = 'queue-item-thumbnail';
+          thumb.src = item.objectUrl;
+          itemEl.appendChild(thumb);
+          
+          const contentEl = document.createElement('div');
+          contentEl.className = 'queue-item-content';
+          
+          const info = document.createElement('div');
+          info.className = 'queue-item-info';
+          
+          const name = document.createElement('p');
+          name.className = 'queue-item-name';
+          name.textContent = item.file.name;
+          name.title = item.file.name;
+          info.appendChild(name);
+          
+          const status = document.createElement('p');
+          status.className = 'queue-item-status';
+          let statusText = item.status.charAt(0).toUpperCase() + item.status.slice(1);
+          if (item.status === 'error') {
+              statusText += `: ${item.error || 'Unknown error'}`;
+          } else if (item.status === 'generating-prompt') {
+              statusText = 'Generating prompt...';
+          }
+          status.textContent = statusText;
+          info.appendChild(status);
+          contentEl.appendChild(info);
+
+          const promptInput = document.createElement('textarea');
+          promptInput.className = 'item-prompt-input';
+          promptInput.placeholder = 'Enter a prompt or one will be auto-generated...';
+          promptInput.value = item.prompt;
+          promptInput.rows = 3;
+          promptInput.addEventListener('input', () => {
+              const currentItem = fileQueue.find(i => i.id === item.id);
+              if (currentItem) {
+                  currentItem.prompt = promptInput.value;
+              }
+              updateGenerateButtonState();
+          });
+          contentEl.appendChild(promptInput);
+          
+          const promptActions = document.createElement('div');
+          promptActions.className = 'item-prompt-actions';
+          const genPromptBtn = document.createElement('button');
+          genPromptBtn.className = 'item-generate-prompt-button';
+          genPromptBtn.textContent = 'Generate Prompt';
+          genPromptBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              generatePromptForImage(item.id);
+          });
+          if (item.status === 'generating-prompt') {
+              genPromptBtn.disabled = true;
+              genPromptBtn.textContent = 'Generating...';
+          }
+          promptActions.appendChild(genPromptBtn);
+          contentEl.appendChild(promptActions);
+          
+          itemEl.appendChild(contentEl);
+
+          const removeButton = document.createElement('button');
+          removeButton.className = 'remove-item-button';
+          removeButton.innerHTML = '&times;';
+          removeButton.title = 'Remove from queue';
+          removeButton.addEventListener('click', (e) => {
+              e.stopPropagation();
+              removeItem(item.id);
+          });
+          itemEl.appendChild(removeButton);
+
+          fileQueueContainer.appendChild(itemEl);
+      });
+      updateGenerateButtonState();
+    }
+    
+    function removeItem(id) {
+        const item = fileQueue.find(i => i.id === id);
+        if (item) {
+            URL.revokeObjectURL(item.objectUrl);
+            logActivity(`Removed ${item.file.name} from queue.`);
+        }
+        fileQueue = fileQueue.filter(item => item.id !== id);
+        renderQueue();
+    }
+
+    async function handleFiles(files) {
+      if (!files || files.length === 0) return;
+      
+      logActivity(`Adding ${files.length} file(s) to the queue...`);
+      for (const file of files) {
+          if (!file.type.startsWith('image/')) {
+              alert(`Skipping non-image file: ${file.name}`);
+              logActivity(`Skipped non-image file: ${file.name}.`);
+              continue;
+          }
+          const base64 = await blobToBase64(file);
+          const id = Date.now() + Math.random();
+          const objectUrl = URL.createObjectURL(file);
+          fileQueue.push({ id, file, base64, objectUrl, status: 'queued', prompt: '' });
+      }
+      renderQueue();
+    }
+
+    async function generatePromptForImage(itemId) {
+      const item = fileQueue.find(i => i.id === itemId);
+      if (!item) return;
+      
+      if (apiKeys.length === 0) {
+        statusEl.innerText = 'Cannot generate prompt: API key not configured.';
+        logActivity('ERROR: Cannot generate prompt, API key not set.');
+        return;
+      }
+      
+      logActivity(`Manually generating prompt for ${item.file.name}...`);
+      const originalStatus = item.status;
+      item.status = 'generating-prompt';
+      renderQueue();
+
+      try {
+        const textPart = { text: 'Describe this image for a video generation model. The description should be vivid, detailed, and focus on potential motion.' };
+        const imagePart = { inlineData: { mimeType: item.file.type, data: item.base64 } };
+
+        const response = await generateContent({
+          model: 'gemini-2.5-flash',
+          contents: { parts: [imagePart, textPart] },
+        }, apiKeys[0]); // Use the first key for manual prompt generation
+
+        item.prompt = response.text.trim();
+        item.status = originalStatus === 'generating-prompt' ? 'queued' : originalStatus;
+        logActivity(`Prompt successfully generated for ${item.file.name}.`);
+      } catch (e) {
+        console.error('Error generating prompt:', e);
+        logActivity(`ERROR generating prompt for ${item.file.name}: ${e.message}`);
+        item.status = 'error';
+        item.error = 'Prompt generation failed.';
+      } finally {
+        renderQueue();
+      }
+    }
+    
+    function updateApiKeys() {
+        const keysFromStorage = (localStorage.getItem(API_KEY_STORAGE_KEY) || '').trim();
+        const userKeys = keysFromStorage ? keysFromStorage.split('\n').map(k => k.trim()).filter(Boolean) : [];
+
+        if (userKeys.length > 0) {
+            apiKeys = userKeys;
+        } else if (process.env.API_KEY) {
+            apiKeys = [process.env.API_KEY];
+        } else {
+            apiKeys = [];
+        }
+        logActivity(`Loaded ${apiKeys.length} API key(s).`);
+    }
+
+    function saveApiKey() {
+      const keys = apiKeyInput.value.trim();
+      if (keys) {
+        localStorage.setItem(API_KEY_STORAGE_KEY, keys);
+        alert('API Key(s) saved.');
+        logActivity('API key(s) saved to local storage.');
+      } else {
+        localStorage.removeItem(API_KEY_STORAGE_KEY);
+        apiKeyInput.value = '';
+        alert('API Key(s) removed.');
+        logActivity('API key(s) removed from local storage.');
+      }
+      updateApiKeys();
+      loadApiKey();
+    }
+
+    function loadApiKey() {
+      const savedKeys = localStorage.getItem(API_KEY_STORAGE_KEY);
+      if (savedKeys) {
+        apiKeyInput.value = savedKeys;
+      }
+      updateApiKeys();
+
+      if (apiKeys.length > 1) {
+          apiKeyStatusEl.textContent = `${apiKeys.length} API keys are configured. Up to ${apiKeys.length} videos will be generated in parallel.`;
+      } else if (apiKeys.length === 1) {
+          if (savedKeys) {
+              apiKeyStatusEl.textContent = "Your key is saved in your browser's local storage.";
+          } else {
+              apiKeyStatusEl.innerHTML = 'A default API key is currently active. You can add your own above to use them instead.';
+          }
+      } else {
+          apiKeyStatusEl.innerHTML = 'No API key found. Please <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">get an API key</a> and enter it above to use the app.';
+      }
+
+      apiKeyInput.classList.add('keys-hidden');
+      toggleApiKeyVisibilityButton.textContent = 'Show';
+      toggleApiKeyVisibilityButton.title = 'Show API Keys';
+    }
+
+    fileInput.addEventListener('change', async (e) => {
+      await handleFiles(e.target.files);
+      e.target.value = '';
+    });
+
+    dropZoneEl.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZoneEl.classList.add('drag-over');
+    });
+
+    dropZoneEl.addEventListener('dragleave', () => {
+      dropZoneEl.classList.remove('drag-over');
+    });
+
+    dropZoneEl.addEventListener('drop', async (e) => {
+      e.preventDefault();
+      dropZoneEl.classList.remove('drag-over');
+      await handleFiles(e.dataTransfer?.files);
+    });
+
+    generateButton.addEventListener('click', () => {
+      if (isGenerating) {
+        isGenerating = false;
+        statusEl.innerText = 'Cancelling... waiting for current step to complete.';
+        logActivity('Cancellation requested by user.');
+        generateButton.disabled = true;
+        generateButton.textContent = 'Cancelling...';
+        generateButton.classList.remove('cancel-button');
+      } else {
+        startGeneration();
+      }
+    });
+
+    saveApiKeyButton.addEventListener('click', saveApiKey);
+    
+    clearLogButton.addEventListener('click', () => {
+      activityLogEl.textContent = '';
+      logActivity('Log cleared.');
+    });
+
+    toggleApiKeyVisibilityButton.addEventListener('click', () => {
+        const isHidden = apiKeyInput.classList.contains('keys-hidden');
+        if (isHidden) {
+            apiKeyInput.classList.remove('keys-hidden');
+            toggleApiKeyVisibilityButton.textContent = 'Hide';
+            toggleApiKeyVisibilityButton.title = 'Hide API Keys';
+        } else {
+            apiKeyInput.classList.add('keys-hidden');
+            toggleApiKeyVisibilityButton.textContent = 'Show';
+            toggleApiKeyVisibilityButton.title = 'Show API Keys';
+        }
+    });
+
+    // Initialize
+    loadApiKey();
+    updateGenerateButtonState();
+    logActivity('Application initialized.');
+  </script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
