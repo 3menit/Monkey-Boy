@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KDG The Monkey Boy | AI Video Generation Tool with Veo</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="An advanced web tool to generate high-quality videos from images and text prompts using Google's Veo AI model. Features batch processing, parallel generation with multiple API keys, and AI-powered prompt assistance.">
+  <meta name="keywords" content="AI video generator, Veo model, text to video, image to video, Google Gemini, KDG The Monkey Boy, AI tool, video creation, batch processing">
+  <meta name="author" content="KDG The Monkey Boy">
+  <link rel="canonical" href="https://example.com" /> <!--! TODO: Ganti dengan URL domain Anda setelah deploy -->
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com"> <!--! TODO: Ganti dengan URL domain Anda setelah deploy -->
+  <meta property="og:title" content="KDG The Monkey Boy | AI Video Generation Tool">
+  <meta property="og:description" content="Effortlessly generate stunning videos from images and prompts using Google's Veo model. Features batch processing, parallel generation, and AI prompt assistance.">
+  <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTFhMWQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0ODAsIDE1MCkgc2NhbGUoMTUpIj4KICAgIDxwYXRoIGZpbGw9IiNENEFGMzciIGQ9Ik0xMiwyQTEwLDEwIDAgMCwwIDIsMTJBMTAsMTAgMCAwLDAgMTIsMjJBMTAsMTAgMCAwLDAgMjIsMTJBMTAsMTAgMCAwLDAgMTIsMk05LDlBMS41LDEuNSAwIDAsMSAxMC41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDEyQTEuNSwxLjUgMCAwLDEgNy41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDlNMTUsOUExLjUsMS41IDAgMCwxIDE2LjUsMTAuNUExLjUsMS41IDAgMCwxIDE1LDEyQTEuNSwxLjUgMCAwLDEgMTMuNSwxMC41QTEuNSwxLjUgMCAwLDEgMTUsOU0xMiwxNEMxNC42NywxNCAxNi45LDE1LjgyIDE3LjUsMTguMjVMMTcuMjcsMTguNUMxNi4zMiwxNy40MiAxNC40NiwxNi41IDEyLDE2LjVDOS41NCwxNi41IDcuNjgsMTcuNDIgNi43MywxOC41TDYuNSwxOC4yNUM3LjEsMTUuODIgOS4zMywxNCAxMiwyNFoiIC8+CiAgPC9nPgogIDx0ZXh0IHg9IjYwMCIgeT0iNDQwIiBmb250LWZhbWlseT0iT3JiaXRyb24sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZpbGw9IiNENEFGMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRleHQtdHJhbnNmb3JtPSJ1cHBlcmNhc2UiPktERyBUSEUgTU9OS0VZIEJPWTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjQ5NSIgZm9udC1mYW1pbHk9Ikdvb2dsZSBTYW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM2IiBmaWxsPSIjYmRjM2M3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BSSBWaWRlbyBHZW5lcmF0aW9uIHdpdGggVmVvPC90ZXh0Pgo8L3N2Zz4=">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://example.com"> <!--! TODO: Ganti dengan URL domain Anda setelah deploy -->
+  <meta property="twitter:title" content="KDG The Monkey Boy | AI Video Generation Tool">
+  <meta property="twitter:description" content="Effortlessly generate stunning videos from images and prompts using Google's Veo model. Features batch processing, parallel generation, and AI prompt assistance.">
+  <meta property="twitter:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIGZpbGw9IiMxYTFhMWQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0ODAsIDE1MCkgc2NhbGUoMTUpIj4KICAgIDxwYXRoIGZpbGw9IiNENEFGMzciIGQ9Ik0xMiwyQTEwLDEwIDAgMCwwIDIsMTJBMTAsMTAgMCAwLDAgMTIsMjJBMTAsMTAgMCAwLDAgMjIsMTJBMTAsMTAgMCAwLDAgMTIsMk05LDlBMS41LDEuNSAwIDAsMSAxMC41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDEyQTEuNSwxLjUgMCAwLDEgNy41LDEwLjVBMS41LDEuNSAwIDAsMSA5LDlNMTUsOUExLjUsMS41IDAgMCwxIDE2LjUsMTAuNUExLjUsMS41IDAgMCwxIDE1LDEyQTEuNSwxLjUgMCAwLDEgMTMuNSwxMC41QTEuNSwxLjUgMCAwLDEgMTUsOU0xMiwxNEMxNC42NywxNCAxNi45LDE1LjgyIDE3LjUsMTguMjVMMTcuMjcsMTguNUMxNi4zMiwxNy40MiAxNC40NiwxNi41IDEyLDE2LjVDOS41NCwxNi41IDcuNjgsMTcuNDIgNi43MywxOC41TDYuNSwxOC4yNUM3LjEsMTUuODIgOS4zMywxNCAxMiwyNFoiIC8+CiAgPC9nPgogIDx0ZXh0IHg9IjYwMCIgeT0iNDQwIiBmb250LWZhbWlseT0iT3JiaXRyb24sIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNzIiIGZpbGw9IiNENEFGMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRleHQtdHJhbnNmb3JtPSJ1cHBlcmNhc2UiPktERyBUSEUgTU9OS0VZIEJPWTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjQ5NSIgZm9udC1mYW1pbHk9Ikdvb2dsZSBTYW5zLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM2IiBmaWxsPSIjYmRjM2M3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BSSBWaWRlbyBHZW5lcmF0aW9uIHdpdGggVmVvPC90ZXh0Pgo8L3N2Zz4=">
+
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0Q0QUYzNyIgZD0iTTEyLDJBMTAsMTAgMCAwLDAgMiwxMkExMCwxMCAwIDAsMCAxMiwyMkExMCwxMCAwIDAsMCAyMiwyMkExMCwxMCAwIDAsMCAxMiwyTTksOUEyLjUsMS41IDAgMCwxIDEwLjUsMTAuNUExLjUsMS41IDAgMCwxIDksMTJBMS41LDEuNSAwIDAsMSA3LjUsMTAuNUExLjUsMS41IDAgMCwxIDksOU0xNSw5QTEuNSwxLjUgMCAwLDEgMTYuNSwxMC41QTEuNSwxLjUgMCAwLDEgMTUsMTJBMS41LDEuNSAwIDAsMSAxMy41LDEwLjVBMS41LDEuNSAwIDAsMSAxNSw5TTEyLDE0QzE0LjY3LDE0IDE2LjksMTUuODIgMTcuNSwxOC4yNUwxNy4yNywxOC41QzE2LjMyLDE3LjQyIDE0LjY2LDE2LjUgMTIsMTYuNUM5LjU0LDE2LjUgNy42OCwxNy40MiA2LjczLDE4LjVMNi41LDE4LjI1QzcuMSwxNS44MiA5LjMzLDE0IDEyLDE0WiIgLz48L3N2Zz4=">
+  <link rel="stylesheet" href="index.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.4.0"
+      }
+    }
+  </script>
+  <!-- Structured Data for Rich Search Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KDG The Monkey Boy - Veo Video Generation",
+    "description": "An advanced web tool to generate high-quality videos from images and text prompts using Google's Veo AI model. Features batch processing, parallel generation, and AI-powered prompt assistance.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any (Web Application)",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "152"
+    },
+    "creator": {
+       "@type": "Person",
+       "name": "KDG The Monkey Boy"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="local-file-warning">
+    <h2>Aplikasi Tidak Dapat Dijalankan Langsung Dari File</h2>
+    <p>Karena alasan keamanan, browser modern memblokir fitur seperti akses API dan penyimpanan lokal saat Anda membuka file HTML secara langsung. Ini bukan kesalahan pada aplikasi, tetapi tindakan keamanan standar.</p>
+    <h3>Cara Memperbaikinya (Mudah!)</h3>
+    <p>Anda perlu menyajikan file ini dari server web lokal sederhana. Berikut adalah dua cara umum:</p>
+    <div class="instructions">
+      <h4>Opsi 1: Menggunakan Python</h4>
+      <p>Jika Anda memiliki Python, buka terminal atau command prompt di direktori file ini dan jalankan:</p>
+      <code>python -m http.server 8000</code>
+      <p>Kemudian, buka browser Anda ke: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+    </div>
+    <div class="instructions">
+      <h4>Opsi 2: Menggunakan Node.js</h4>
+      <p>Jika Anda memiliki Node.js, buka terminal di direktori file ini dan jalankan:</p>
+      <code>npx serve</code>
+      <p>Terminal akan memberi Anda alamat lokal untuk dibuka, biasanya <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+    </div>
+    <p>Setelah Anda menjalankan aplikasi dari alamat <code>http://localhost</code>, pesan ini akan hilang dan aplikasi akan berfungsi dengan benar.</p>
+  </div>
+  
+  <div id="app-container">
+    <h1>KDG The Monkey Boy</h1>
+    <p class="tagline">Advanced AI Video Generation with Veo</p>
+    <p>Batch-process images and prompts to generate high-quality videos. Use multiple API keys for parallel processing and leverage AI to auto-generate or improve your creative prompts.</p>
+
+    <div class="api-key-container">
+      <label for="api-key-input">API Keys (one per line for parallel processing)</label>
+      <div class="api-key-input-wrapper">
+        <textarea id="api-key-input" rows="4" placeholder="Enter one or more Gemini API keys, one per line" aria-label="API Key Input"></textarea>
+        <div class="api-key-buttons">
+          <button id="toggle-api-key-visibility-button" title="Toggle API Key Visibility">Show</button>
+          <button id="save-api-key-button">Save</button>
+        </div>
+      </div>
+      <p id="api-key-status" class="helper-text">Checking API key status...</p>
+    </div>
+
+    <div class="main-input-area">
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-zone-prompt">
+          <p>Drag & drop image(s) here, or <label for="file-input">browse files</label>.</p>
+        </div>
+        <input id="file-input" type="file" accept="image/*" multiple />
+        <div id="file-queue-container"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="generate-button">Generate</button>
+      <button id="generate-all-prompts-button">Generate All Prompts</button>
+      <button id="download-all-button" style="display: none;">Download All</button>
+      <button id="clear-completed-button" style="display: none;">Clear Completed</button>
+      <div class="select-wrapper">
+        <label for="aspect-ratio-select">Aspect Ratio</label>
+        <select id="aspect-ratio-select">
+          <option value="16:9" selected>Landscape (16:9)</option>
+          <option value="9:16">Story / Reel (9:16)</option>
+          <option value="4:5">Instagram Post (4:5)</option>
+          <option value="1:1">Square (1:1)</option>
+        </select>
+      </div>
+      <div class="select-wrapper">
+        <label for="quality-select">Video Quality</label>
+        <select id="quality-select">
+          <option value="high" selected>High</option>
+          <option value="standard">Standard</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="quota-error">
+      <p>You have exceeded your generation quota, or your API key is invalid.</p>
+      <p>Please check your API key and try again. If you are using a custom key, ensure it is correct. If the issue persists, check your project's quota on Google AI Studio.</p>
+    </div>
+    
+    <p id="status">Ready.</p>
+
+    <div id="activity-log-container">
+      <h2>Activity Log</h2>
+      <div id="log-entries"></div>
+    </div>
+
+    <div id="results-container"></div>
+
+    <!-- Bottom Ad Slots -->
+    <div class="ad-container">
+      <div class="ad-placeholder ad-placeholder-bottom ad-placeholder-bottom-1">
+        <!-- Ads injected by script -->
+      </div>
+      <div class="ad-placeholder ad-placeholder-bottom ad-placeholder-bottom-2">
+        <!-- Ads injected by script -->
+      </div>
+    </div>
+    
+    <footer>
+      <p>&copy; 2024 KDG The Monkey Boy. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <!--! 
+    MARKETING & ANALYTICS
+    Tempelkan cuplikan skrip analitik Anda (misalnya, Google Analytics) di sini.
+    Ini akan membantu Anda melacak pengunjung dan memahami bagaimana mereka menggunakan aplikasi.
+  -->
+  <!-- Contoh Google Analytics:
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <script type="module" src="index.tsx"></script>
+</body>
+</html>

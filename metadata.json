@@ -1,0 +1,5 @@
+{
+  "name": "KDG The Monkey Boy 2",
+  "description": "Effortlessly generate high-quality videos from images and prompts using Google's Veo model. Features batch processing, parallel generation with multiple API keys, and automated prompt creation.",
+  "requestFramePermissions": []
+}

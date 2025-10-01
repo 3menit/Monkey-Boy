@@ -1,0 +1,6 @@
+# Allow all web crawlers to access all content.
+User-agent: *
+Allow: /
+
+# TODO: Add the full URL to your sitemap.xml file once you have one.
+# Sitemap: https://your-domain.com/sitemap.xml
