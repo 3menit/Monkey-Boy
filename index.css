@@ -332,6 +332,8 @@ button:disabled, select:disabled {
     padding: 20px;
     justify-content: flex-start;
     cursor: default;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .drop-zone.drag-over {

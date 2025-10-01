@@ -685,7 +685,9 @@ async function addImageToItem(id: number, file: File) {
 async function handleFiles(files: FileList | null) {
   if (!files || files.length === 0) return;
 
+  let addedCount = 0;
   for (const file of Array.from(files)) {
+    try {
       if (!file.type.startsWith('image/')) {
           logActivity(`Skipped non-image file: ${file.name}`);
           alert(`Skipping non-image file: ${file.name}`);
@@ -695,9 +697,19 @@ async function handleFiles(files: FileList | null) {
       const id = Date.now() + Math.random();
       const objectUrl = URL.createObjectURL(file);
       fileQueue.push({ id, file, base64, objectUrl, status: 'queued', prompt: '' });
+      addedCount++;
+    } catch (error) {
+      console.error(`Failed to process file: ${file.name}`, error);
+      const msg = `Could not process the file "${file.name}". It might be corrupted or in an unsupported format.`;
+      logActivity(msg);
+      alert(msg);
+    }
   }
-  logActivity(`Added ${files.length} file(s) to the queue.`);
-  renderQueue();
+
+  if (addedCount > 0) {
+    logActivity(`Added ${addedCount} file(s) to the queue.`);
+    renderQueue();
+  }
 }
 
 async function generatePromptForImage(itemId: number, apiKey: string) {
