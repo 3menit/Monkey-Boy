@@ -162,28 +162,35 @@ video {
   display: none;
   background-color: rgba(192, 57, 43, 0.2);
   border: 1px solid #c0392b;
-  padding: 15px;
+  padding: 15px 20px;
   border-radius: 8px;
   margin: 20px 0;
-  color: #f2a29b;
 }
 
 #quota-error p {
   color: #f2a29b;
+  margin: 10px 0;
+}
+
+#quota-error p:first-child {
+  margin-top: 0;
+}
+#quota-error p:last-child {
+  margin-bottom: 0;
 }
 
 #quota-error strong {
-    color: white;
-    font-size: 1.1em;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 #quota-error code {
   background-color: var(--dark-bg);
-  padding: 2px 8px;
+  padding: 4px 8px;
   border-radius: 4px;
   font-family: monospace;
   color: var(--gold);
-  border: 1px solid var(--border-color);
+  border: 1px solid #c0392b;
   font-weight: bold;
 }
 
@@ -226,16 +233,22 @@ button:active:not(:disabled) {
   box-shadow: 0 0 15px rgba(231, 76, 60, 0.7);
 }
 
-#generate-button.cancel-button {
+#generate-button.cancel-button,
+#generate-all-prompts-button.cancel-button {
   background-color: #f39c12;
+  color: white;
+  border-color: #f39c12;
   box-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
 }
 
-#generate-button.cancel-button:hover:not(:disabled) {
+#generate-button.cancel-button:hover:not(:disabled),
+#generate-all-prompts-button.cancel-button:hover:not(:disabled) {
   background-color: #f1c40f;
+  border-color: #f1c40f;
   box-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
 }
 
+#generate-all-prompts-button,
 #save-api-key-button,
 .download-button {
   background-color: transparent;
@@ -243,6 +256,7 @@ button:active:not(:disabled) {
   border: 2px solid var(--gold);
 }
 
+#generate-all-prompts-button:hover:not(:disabled),
 #save-api-key-button:hover:not(:disabled),
 .download-button:hover:not(:disabled) {
     background-color: var(--gold);

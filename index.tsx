@@ -186,7 +186,12 @@ function updateGenerateButtonState() {
 }
 
 function updatePromptButtonsState() {
-    if (isGenerating || isBatchGeneratingPrompts) {
+    if (isBatchGeneratingPrompts) {
+        // When batch generating, this button is the 'Cancel' button.
+        // Its state is managed by `setBatchPromptUIState` and should not be changed here.
+        return;
+    }
+    if (isGenerating) {
         generateAllPromptsButton.disabled = true;
         return;
     }
@@ -218,8 +223,14 @@ function setBatchPromptUIState(processing: boolean) {
     downloadAllButton.disabled = processing;
     clearCompletedButton.disabled = processing;
 
-    generateAllPromptsButton.textContent = processing ? 'Generating...' : 'Generate All Prompts';
-    generateAllPromptsButton.disabled = processing;
+    if (processing) {
+        generateAllPromptsButton.textContent = 'Cancel Prompts';
+        generateAllPromptsButton.classList.add('cancel-button');
+        generateAllPromptsButton.disabled = false; // Enable cancel button
+    } else {
+        generateAllPromptsButton.textContent = 'Generate All Prompts';
+        generateAllPromptsButton.classList.remove('cancel-button');
+    }
 
     document.querySelectorAll('.item-prompt-input, .item-generate-prompt-button, .remove-item-button, .remove-image-button, .queue-item-image-placeholder').forEach((el: HTMLElement) => {
         (el as HTMLInputElement).disabled = processing;
@@ -361,8 +372,9 @@ async function startGeneration() {
   adInjected = false; // Reset the ad injection flag
   updateActionButtonsState();
   
-  const concurrency = Math.min(apiKeys.length, itemsToProcess.length);
-  logActivity(`Batch generation started with ${concurrency} parallel worker(s).`);
+  const MAX_VIDEO_WORKERS = 5;
+  const concurrency = Math.min(apiKeys.length, itemsToProcess.length, MAX_VIDEO_WORKERS);
+  logActivity(`Batch generation started with ${concurrency} parallel worker(s) (max ${MAX_VIDEO_WORKERS}).`);
   
   // Reset statuses for all processable items
   fileQueue.forEach(item => {
@@ -417,12 +429,14 @@ async function startGeneration() {
         logActivity(`Worker ${workerId + 1}: Error on item "${itemName}": ${e.message}`);
         
         // More specific error handling for API key issues
-        if (e.message.includes('API key not valid') || e.message.includes('429') || e.message.includes('permission')) {
+        const errorMessage = e.message.toLowerCase();
+        if (errorMessage.includes('api key not valid') || errorMessage.includes('429') || errorMessage.includes('permission') || errorMessage.includes('referrer')) {
             const domainSpan = document.getElementById('quota-error-domain');
             if (domainSpan) {
-                domainSpan.textContent = window.location.hostname;
+                domainSpan.textContent = window.location.hostname || 'your-local-environment';
             }
             quotaErrorEl.style.display = 'block';
+            logActivity(`API Key error detected. Displaying domain restriction message for ${window.location.hostname}.`);
         }
         statusEl.innerText = `Error on an item. Worker will pick up another task.`;
       } finally {
@@ -768,7 +782,8 @@ async function startBatchPromptGeneration() {
     setBatchPromptUIState(true);
     statusEl.innerText = `Generating prompts for ${itemsToProcess.length} items...`;
 
-    const concurrency = Math.min(apiKeys.length, itemsToProcess.length);
+    const MAX_PROMPT_WORKERS = 5;
+    const concurrency = Math.min(apiKeys.length, itemsToProcess.length, MAX_PROMPT_WORKERS);
     logActivity(`Starting batch prompt generation for ${itemsToProcess.length} items with ${concurrency} worker(s).`);
 
     fileQueue.forEach(item => {
@@ -776,7 +791,7 @@ async function startBatchPromptGeneration() {
     });
 
     const runPromptWorker = async (apiKey: string) => {
-        while (true) {
+        while (isBatchGeneratingPrompts) {
             const item = fileQueue.find(i => (i.file || (i.prompt && i.prompt.trim() !== '')) && !i.promptGenerationStarted);
             if (!item) break;
 
@@ -789,8 +804,14 @@ async function startBatchPromptGeneration() {
     await Promise.all(workers);
 
     fileQueue.forEach(item => delete item.promptGenerationStarted);
-    logActivity('Batch prompt generation complete.');
-    statusEl.innerText = 'Batch prompt generation complete.';
+
+    if (!isBatchGeneratingPrompts) { // Flag was changed by the cancel button
+        logActivity('Batch prompt generation cancelled.');
+        statusEl.innerText = 'Batch prompt generation cancelled.';
+    } else {
+        logActivity('Batch prompt generation complete.');
+        statusEl.innerText = 'Batch prompt generation complete.';
+    }
     
     isBatchGeneratingPrompts = false;
     setBatchPromptUIState(false);
@@ -950,7 +971,20 @@ function initializeApp() {
     }
   });
 
-  generateAllPromptsButton.addEventListener('click', startBatchPromptGeneration);
+  generateAllPromptsButton.addEventListener('click', () => {
+    if (isBatchGeneratingPrompts) {
+      // Request cancellation
+      isBatchGeneratingPrompts = false;
+      // Provide immediate UI feedback
+      statusEl.innerText = 'Cancelling prompt generation...';
+      generateAllPromptsButton.disabled = true;
+      generateAllPromptsButton.textContent = 'Cancelling...';
+      generateAllPromptsButton.classList.remove('cancel-button');
+      logActivity('User requested to cancel batch prompt generation.');
+    } else {
+      startBatchPromptGeneration();
+    }
+  });
 
   downloadAllButton.addEventListener('click', handleDownloadAll);
   
