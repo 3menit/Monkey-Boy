@@ -642,33 +642,13 @@ select:hover:not(:disabled) {
     text-align: center;
 }
 
-.ad-container {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.ad-placeholder {
-    background-color: var(--medium-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: var(--dark-text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9em;
-    overflow: hidden;
-}
-
-.ad-fallback {
-    color: var(--dark-text);
-    font-size: 0.9em;
-    user-select: none;
-}
-
-.ad-placeholder-bottom {
-    height: 250px;
+.native-ad-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px;
+  color: var(--dark-text);
+  font-style: italic;
 }
 
 footer {

@@ -32,6 +32,7 @@ let isGenerating = false;
 let isBatchGeneratingPrompts = false;
 let targetItemIdForFileUpload: number | null = null;
 let currentApiKeyIndex = 0;
+let adInjected = false;
 
 // --- Utility Functions ---
 
@@ -127,74 +128,6 @@ function downloadFile(url: string, filename: string) {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-}
-
-// --- Ad Refresh Logic ---
-const adConfigs = [
-  {
-    container: '.ad-placeholder-bottom-1',
-    options: { // These are just for sizing the iframe
-        height: 250,
-        width: 300
-    },
-    src: '//niecesprivilegelimelight.com/ba/4d/45/ba4d459718cd19ec4a0b2493e8f3de9d.js',
-    direct: true // Flag to skip the atOptions variable
-  },
-  {
-    container: '.ad-placeholder-bottom-2',
-    options: { // These are just for sizing the iframe
-        height: 250,
-        width: 300
-    },
-    src: '//niecesprivilegelimelight.com/ba/4d/45/ba4d459718cd19ec4a0b2493e8f3de9d.js',
-    direct: true // Flag to skip the atOptions variable
-  }
-];
-
-function loadAndRefreshAds() {
-  adConfigs.forEach(config => {
-    const containerEl = document.querySelector(config.container);
-    if (!containerEl) {
-      console.error('Ad container not found:', config.container);
-      return;
-    }
-    // Clear previous ad content
-    containerEl.innerHTML = '';
-    const iframe = document.createElement('iframe');
-    iframe.style.width = `100%`;
-    iframe.style.height = `${config.options.height}px`;
-    iframe.style.border = '0';
-    iframe.style.margin = '0';
-    iframe.style.padding = '0';
-    iframe.scrolling = 'no';
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('title', 'Advertisement'); // For accessibility
-
-    let scriptTags = `<script type="text/javascript" src="${config.src}"><\/script>`;
-    // Prepend the options script only if it's not a direct ad
-    if (!config.direct) {
-        scriptTags = `<script type="text/javascript">var atOptions = ${JSON.stringify(config.options)};<\/script>${scriptTags}`;
-    }
-    
-    const adHtml = `
-      <!DOCTYPE html>
-      <html>
-        <head><style>body { margin: 0; }</style></head>
-        <body>
-          ${scriptTags}
-        </body>
-      </html>`;
-    iframe.srcdoc = adHtml;
-    containerEl.appendChild(iframe);
-  });
-}
-
-function startAdRefresher() {
-    loadAndRefreshAds(); // Load ads immediately
-    // Use a self-calling setTimeout loop instead of setInterval. This is slightly more
-    // robust as it ensures a new refresh cycle doesn't start until the previous
-    // one has conceptually finished, preventing potential overlaps on a slow connection.
-    setTimeout(startAdRefresher, 30000); // Refresh every 30 seconds
 }
 
 // --- Core Logic ---
@@ -369,6 +302,34 @@ function createVideoResult(file: File, videoBlob: Blob) {
     card.appendChild(actions);
     
     resultsContainer.appendChild(card);
+
+    // Inject an ad card into the results grid after the first video, but only once per batch.
+    if (!adInjected) {
+        const adCard = document.createElement('div');
+        adCard.className = 'result-card native-ad-placeholder';
+        
+        const adContainer = document.createElement('div');
+        adContainer.id = 'container-ddd559f2d98723b5096dc35a62d88870';
+        adCard.appendChild(adContainer);
+        
+        resultsContainer.appendChild(adCard);
+
+        // Remove the old ad script if it exists to ensure the new one runs correctly
+        const oldScript = document.querySelector('script[src*="niecesprivilegelimelight.com"]');
+        if (oldScript) {
+            oldScript.remove();
+        }
+
+        // Dynamically load the ad script so it finds the newly created container
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.dataset.cfasync = 'false';
+        adScript.src = '//niecesprivilegelimelight.com/ddd559f2d98723b5096dc35a62d88870/invoke.js';
+        document.body.appendChild(adScript);
+
+        adInjected = true;
+        logActivity('Ad placeholder injected into results grid.');
+    }
 }
 
 async function startGeneration() {
@@ -397,6 +358,7 @@ async function startGeneration() {
   // Clear previous results and blobs
   fileQueue.forEach(item => { delete item.videoBlob; });
   resultsContainer.innerHTML = '';
+  adInjected = false; // Reset the ad injection flag
   updateActionButtonsState();
   
   const concurrency = Math.min(apiKeys.length, itemsToProcess.length);
@@ -1006,7 +968,6 @@ function initializeApp() {
   updateGenerateButtonState();
   updatePromptButtonsState();
   updateActionButtonsState();
-  startAdRefresher(); // This handles initial load and subsequent refreshes.
 }
 
 // Start the app
