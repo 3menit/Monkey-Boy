@@ -926,6 +926,14 @@ function initializeApp() {
     return; // Stop initialization if on file protocol
   }
 
+  // --- Prevent browser's default file open behavior ---
+  window.addEventListener('dragover', (e) => {
+    e.preventDefault();
+  });
+  window.addEventListener('drop', (e) => {
+    e.preventDefault();
+  });
+
   // Add Event Listeners
   fileInput.addEventListener('change', async (e) => {
     const target = e.target as HTMLInputElement;
