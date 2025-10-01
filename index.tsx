@@ -415,8 +415,14 @@ async function startGeneration() {
         item.status = 'error';
         item.error = e.message;
         logActivity(`Worker ${workerId + 1}: Error on item "${itemName}": ${e.message}`);
-        if (e.message.includes('API key not valid') || e.message.includes('429')) {
-          quotaErrorEl.style.display = 'block';
+        
+        // More specific error handling for API key issues
+        if (e.message.includes('API key not valid') || e.message.includes('429') || e.message.includes('permission')) {
+            const domainSpan = document.getElementById('quota-error-domain');
+            if (domainSpan) {
+                domainSpan.textContent = window.location.hostname;
+            }
+            quotaErrorEl.style.display = 'block';
         }
         statusEl.innerText = `Error on an item. Worker will pick up another task.`;
       } finally {

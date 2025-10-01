@@ -168,6 +168,25 @@ video {
   color: #f2a29b;
 }
 
+#quota-error p {
+  color: #f2a29b;
+}
+
+#quota-error strong {
+    color: white;
+    font-size: 1.1em;
+}
+
+#quota-error code {
+  background-color: var(--dark-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: var(--gold);
+  border: 1px solid var(--border-color);
+  font-weight: bold;
+}
+
 .main-input-area {
   margin-bottom: 20px;
 }

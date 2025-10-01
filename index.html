@@ -132,8 +132,10 @@
     </div>
 
     <div id="quota-error">
-      <p>You have exceeded your generation quota, or your API key is invalid.</p>
-      <p>Please check your API key and try again. If you are using a custom key, ensure it is correct. If the issue persists, check your project's quota on Google AI Studio.</p>
+      <p><strong>Generation Failed</strong></p>
+      <p>You may have exceeded your generation quota, or your API key is invalid for this website.</p>
+      <p><strong>If this app was just deployed,</strong> this is a common API key restriction. You must add this website's domain to the "HTTP referrers" list in your Google API key settings. The domain to add is: <code><span id="quota-error-domain"></span></code></p>
+      <p>Please update your API key settings on the <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio</a> or Google Cloud Console and try again.</p>
     </div>
     
     <p id="status">Ready.</p>
