@@ -661,6 +661,12 @@ select:hover:not(:disabled) {
     overflow: hidden;
 }
 
+.ad-fallback {
+    color: var(--dark-text);
+    font-size: 0.9em;
+    user-select: none;
+}
+
 .ad-placeholder-bottom {
     height: 250px;
 }

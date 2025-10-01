@@ -146,17 +146,22 @@
     <div id="results-container"></div>
 
     <!--
-      ADVERTISING NOTES FOR DEPLOYMENT:
-      1. Ad networks like the one used here often require you to register and verify your domain name (e.g., www.your-app.com) in their dashboard.
-      2. If ads do not appear on your live website, the first step is to check your ad network account to ensure your domain is approved. This is the most common reason for ads not showing up on a deployed site.
-      3. The application uses sandboxed iframes to load ads safely. This is a robust method, but final ad delivery is controlled by the ad network.
+      ! ! ! IMPORTANT DEPLOYMENT NOTE FOR ADS ! ! !
+      If ads do not appear on your LIVE website (but work locally), it is almost
+      certainly because you have NOT registered and verified your domain name
+      (e.g., www.your-app.com) in your ad network's dashboard.
+
+      THIS IS THE #1 MOST COMMON REASON FOR ADS FAILING IN PRODUCTION.
+      
+      Log in to your ad network account and add your live domain to their list
+      of approved sites. The ad script below will not work on unverified domains.
     -->
     <div class="ad-container">
       <div class="ad-placeholder ad-placeholder-bottom ad-placeholder-bottom-1">
-        <!-- Ads injected by script -->
+        <span class="ad-fallback">Advertisement</span>
       </div>
       <div class="ad-placeholder ad-placeholder-bottom ad-placeholder-bottom-2">
-        <!-- Ads injected by script -->
+        <span class="ad-fallback">Advertisement</span>
       </div>
     </div>
     
