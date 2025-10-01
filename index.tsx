@@ -189,6 +189,14 @@ function loadAndRefreshAds() {
   });
 }
 
+function startAdRefresher() {
+    loadAndRefreshAds(); // Load ads immediately
+    // Use a self-calling setTimeout loop instead of setInterval. This is slightly more
+    // robust as it ensures a new refresh cycle doesn't start until the previous
+    // one has conceptually finished, preventing potential overlaps on a slow connection.
+    setTimeout(startAdRefresher, 30000); // Refresh every 30 seconds
+}
+
 // --- Core Logic ---
 
 async function generateVideo(prompt: string, imageBytes: string, mimeType: string, apiKey: string) {
@@ -998,9 +1006,7 @@ function initializeApp() {
   updateGenerateButtonState();
   updatePromptButtonsState();
   updateActionButtonsState();
-  loadAndRefreshAds(); // Load ads on startup
-  // Set up auto-refresh for ads every 30 seconds.
-  setInterval(loadAndRefreshAds, 30000);
+  startAdRefresher(); // This handles initial load and subsequent refreshes.
 }
 
 // Start the app
