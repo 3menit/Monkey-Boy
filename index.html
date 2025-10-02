@@ -581,6 +581,63 @@
         text-align: center;
     }
 
+    .thumbnail-wrapper {
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .remove-image-button {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--error-color);
+        color: white;
+        border: 2px solid var(--dark-bg);
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+        padding: 0;
+        cursor: pointer;
+        font-weight: bold;
+        transition: transform 0.2s, background-color 0.2s;
+        z-index: 10;
+    }
+
+    .remove-image-button:hover {
+        transform: scale(1.1);
+        background-color: #e74c3c;
+    }
+
+    .queue-item-thumbnail-placeholder {
+        width: 60px;
+        height: 60px;
+        border-radius: 6px;
+        background-color: #38383e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7em;
+        color: var(--dark-text);
+        text-align: center;
+        border: 1px dashed var(--border-color);
+        flex-shrink: 0;
+    }
+
+    .queue-item-selector {
+        align-self: center;
+        margin-right: 5px;
+        flex-shrink: 0;
+    }
+
+    .queue-item-selector input[type="checkbox"] {
+        transform: scale(1.4);
+        cursor: pointer;
+        accent-color: var(--gold);
+    }
+    
     @media (max-width: 768px) {
       .main-input-area {
         flex-direction: column;
@@ -845,9 +902,21 @@
     }
     
     function updateGenerateButtonState() {
-        if (isGenerating) return; // Don't touch if it's a Cancel button
-        const hasProcessableItems = fileQueue.length > 0;
-        generateButton.disabled = !hasProcessableItems;
+        if (isGenerating) return;
+
+        const selectedItems = fileQueue.filter(i => i.selected);
+        const totalItems = fileQueue.length;
+
+        if (selectedItems.length > 0) {
+            generateButton.textContent = `Generate Selected (${selectedItems.length})`;
+            generateButton.disabled = false;
+        } else if (totalItems > 0) {
+            generateButton.textContent = `Generate All (${totalItems})`;
+            generateButton.disabled = false;
+        } else {
+            generateButton.textContent = 'Generate';
+            generateButton.disabled = true;
+        }
     }
 
     function setUIState(generating) {
@@ -870,7 +939,7 @@
         updateGenerateButtonState();
       }
       
-      document.querySelectorAll('.item-prompt-input, .item-generate-prompt-button, .remove-item-button').forEach(el => {
+      document.querySelectorAll('.item-prompt-input, .item-generate-prompt-button, .remove-item-button, .remove-image-button, .queue-item-selector input').forEach(el => {
         el.disabled = generating;
       });
     }
@@ -883,7 +952,8 @@
         card.className = 'result-card';
         
         const title = document.createElement('h3');
-        title.textContent = file.name;
+        const fileName = file ? file.name : "Text-to-Video Result";
+        title.textContent = fileName;
         card.appendChild(title);
 
         const video = document.createElement('video');
@@ -901,19 +971,15 @@
         downloadButton.className = 'download-button';
         downloadButton.textContent = 'Download Video';
         downloadButton.addEventListener('click', () => {
-            // Prevent re-clicks while in "Downloaded" state
             if (downloadButton.classList.contains('downloaded')) {
                 return;
             }
-            downloadFile(videoObjectUrl, `video_for_${file.name}.mp4`);
+            downloadFile(videoObjectUrl, `video_for_${fileName}.mp4`);
             
-            // Update button state to "Downloaded"
             downloadButton.textContent = 'Downloaded ✓';
             downloadButton.classList.add('downloaded');
 
-            // Revert button state after 3 seconds
             setTimeout(() => {
-                // Check if the element is still in the DOM before updating
                 if (downloadButton.isConnected) {
                     downloadButton.textContent = 'Download Video';
                     downloadButton.classList.remove('downloaded');
@@ -925,7 +991,6 @@
         
         resultsContainer.appendChild(card);
         
-        // Inject first ad after first video
         if (!ad1Added && videosCreated >= 1) {
             const adCard = document.createElement('div');
             adCard.className = 'result-card';
@@ -936,8 +1001,6 @@
             adCard.appendChild(adContainer);
             resultsContainer.appendChild(adCard);
 
-            // Now that the container is in the DOM, dynamically load the ad script.
-            // The ad script will find the container and populate it.
             const adScript = document.createElement('script');
             adScript.async = true;
             adScript.dataset.cfasync = "false";
@@ -951,7 +1014,7 @@
 
     /** Atomically gets the next item from the queue and marks it as processing */
     function getNextQueuedItem() {
-        const item = fileQueue.find(i => i.status === 'queued' || i.status === 'error');
+        const item = fileQueue.find(i => i.status === 'queued');
         if (item) {
             item.status = 'processing'; // Mark it immediately to prevent other workers from grabbing it
         }
@@ -966,14 +1029,18 @@
             if (!item) {
                 break; // No more items to process, worker is done
             }
+            const itemName = item.file ? item.file.name : 'item without image';
             const currentTaskNumber = ++jobState.tasksStartedCount;
-            logActivity(`${workerPrefix} Picked up task ${currentTaskNumber} of ${jobState.totalTasks} for ${item.file.name}.`);
+            logActivity(`${workerPrefix} Picked up task ${currentTaskNumber} of ${jobState.totalTasks} for ${itemName}.`);
             
             try {
                 // Step 1: Generate prompt if missing
                 if (!item.prompt || item.prompt.trim() === '') {
-                    statusEl.innerText = `${workerPrefix} Generating prompt for ${item.file.name}...`;
-                    logActivity(`${workerPrefix} Auto-generating prompt for ${item.file.name}...`);
+                    if (!item.base64 || !item.file) {
+                        throw new Error('No prompt provided and no image to generate one from.');
+                    }
+                    statusEl.innerText = `${workerPrefix} Generating prompt for ${itemName}...`;
+                    logActivity(`${workerPrefix} Auto-generating prompt for ${itemName}...`);
                     renderQueue();
                     try {
                         const keyForPrompt = apiKey; // Use worker's key
@@ -984,27 +1051,27 @@
                             contents: { parts: [imagePart, textPart] },
                         }, keyForPrompt);
                         item.prompt = response.text.trim();
-                        logActivity(`${workerPrefix} Prompt generated successfully for ${item.file.name}.`);
+                        logActivity(`${workerPrefix} Prompt generated successfully for ${itemName}.`);
                     } catch (promptError) {
                         if (!isGenerating) break; // User cancelled during prompt generation
-                        console.error(`${workerPrefix} Error auto-generating prompt for ${item.file.name}:`, promptError);
+                        console.error(`${workerPrefix} Error auto-generating prompt for ${itemName}:`, promptError);
                         throw new Error('Auto-prompt failed: ' + promptError.message);
                     }
                 }
                 renderQueue(); // Update UI with the new prompt
 
                 // Step 2: Generate video
-                statusEl.innerText = `${workerPrefix} Generating video for ${item.file.name}...`;
-                logActivity(`${workerPrefix} Generating video for ${item.file.name}...`);
-                const videoBlob = await generateVideo(item.prompt, item.base64, item.file.type, apiKey);
+                statusEl.innerText = `${workerPrefix} Generating video for ${itemName}...`;
+                logActivity(`${workerPrefix} Generating video for ${itemName}...`);
+                const videoBlob = await generateVideo(item.prompt, item.base64, item.file ? item.file.type : null, apiKey);
                 createVideoResult(item.file, videoBlob);
                 item.status = 'complete';
-                logActivity(`${workerPrefix} Successfully completed task for ${item.file.name}.`);
+                logActivity(`${workerPrefix} Successfully completed task for ${itemName}.`);
 
             } catch (e) {
                 if (!isGenerating) break; // User cancelled
-                console.error(`${workerPrefix} Error processing ${item.file.name}:`, e);
-                logActivity(`${workerPrefix} ERROR processing ${item.file.name}: ${e.message}`);
+                console.error(`${workerPrefix} Error processing ${itemName}:`, e);
+                logActivity(`${workerPrefix} ERROR processing ${itemName}: ${e.message}`);
                 item.status = 'error';
                 item.error = e.message;
                 quotaErrorEl.style.display = 'block';
@@ -1042,10 +1109,12 @@
         return;
       }
       
-      const itemsToProcess = fileQueue.filter(item => item.status !== 'complete' && item.status !== 'processing');
+      const selectedItems = fileQueue.filter(i => i.selected);
+      const itemsToProcess = selectedItems.length > 0 ? selectedItems : fileQueue;
+
       if (itemsToProcess.length === 0) {
-        statusEl.innerText = 'All items have been processed. Add new images to generate.';
-        logActivity('Generate button clicked, but no new items to process.');
+        statusEl.innerText = 'Add or select files to generate videos.';
+        logActivity('Generate button clicked, but no items are available or selected.');
         return;
       }
 
@@ -1056,16 +1125,14 @@
       ad1Added = false;
       videosCreated = 0;
 
-      // Reset status for items that are not complete
-      fileQueue.forEach(item => {
-          if (item.status !== 'complete') {
-            item.status = 'queued';
-            item.error = undefined;
-          }
+      // Reset status for only the items to be processed.
+      itemsToProcess.forEach(item => {
+        item.status = 'queued';
+        item.error = undefined;
       });
       renderQueue();
 
-      const maxConcurrentJobs = apiKeys.length;
+      const maxConcurrentJobs = Math.min(apiKeys.length, itemsToProcess.length);
       const jobState = {
         tasksStartedCount: 0,
         totalTasks: itemsToProcess.length,
@@ -1088,7 +1155,7 @@
           if (i.status === 'processing') i.status = 'queued';
         });
       } else {
-        const failedCount = fileQueue.filter(i => i.status === 'error').length;
+        const failedCount = itemsToProcess.filter(i => i.status === 'error').length;
         if (failedCount > 0) {
             const finishMsg = `Batch processing complete with ${failedCount} error(s).`;
             statusEl.innerText = finishMsg;
@@ -1107,6 +1174,19 @@
     
     // --- UI and Event Listeners ---
     
+    function removeImageFromItem(id) {
+        const item = fileQueue.find(i => i.id === id);
+        if (item) {
+            URL.revokeObjectURL(item.objectUrl);
+            const fileName = item.file ? item.file.name : 'item';
+            item.file = null;
+            item.base64 = null;
+            item.objectUrl = null;
+            logActivity(`Removed image from ${fileName}. Prompt is preserved.`);
+            renderQueue();
+        }
+    }
+
     function renderQueue() {
       fileQueueContainer.innerHTML = '';
       if (fileQueue.length > 0) {
@@ -1123,10 +1203,47 @@
           itemEl.dataset.id = item.id;
           itemEl.dataset.status = item.status;
 
-          const thumb = document.createElement('img');
-          thumb.className = 'queue-item-thumbnail';
-          thumb.src = item.objectUrl;
-          itemEl.appendChild(thumb);
+          const selector = document.createElement('div');
+          selector.className = 'queue-item-selector';
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = item.selected;
+          checkbox.title = 'Select/Deselect for generation';
+          checkbox.addEventListener('change', () => {
+              const currentItem = fileQueue.find(i => i.id === item.id);
+              if (currentItem) {
+                  currentItem.selected = checkbox.checked;
+              }
+              updateGenerateButtonState();
+          });
+          selector.appendChild(checkbox);
+          itemEl.appendChild(selector);
+
+          const thumbnailWrapper = document.createElement('div');
+          thumbnailWrapper.className = 'thumbnail-wrapper';
+
+          if (item.objectUrl) {
+              const thumb = document.createElement('img');
+              thumb.className = 'queue-item-thumbnail';
+              thumb.src = item.objectUrl;
+              thumbnailWrapper.appendChild(thumb);
+              
+              const removeImgBtn = document.createElement('button');
+              removeImgBtn.className = 'remove-image-button';
+              removeImgBtn.innerHTML = '&times;';
+              removeImgBtn.title = 'Remove image (keep prompt)';
+              removeImgBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  removeImageFromItem(item.id);
+              });
+              thumbnailWrapper.appendChild(removeImgBtn);
+          } else {
+              const placeholder = document.createElement('div');
+              placeholder.className = 'queue-item-thumbnail-placeholder';
+              placeholder.textContent = 'No Image';
+              thumbnailWrapper.appendChild(placeholder);
+          }
+          itemEl.appendChild(thumbnailWrapper);
           
           const contentEl = document.createElement('div');
           contentEl.className = 'queue-item-content';
@@ -1136,8 +1253,8 @@
           
           const name = document.createElement('p');
           name.className = 'queue-item-name';
-          name.textContent = item.file.name;
-          name.title = item.file.name;
+          name.textContent = item.file ? item.file.name : 'Text-only prompt';
+          name.title = item.file ? item.file.name : 'Text-only prompt';
           info.appendChild(name);
           
           const status = document.createElement('p');
@@ -1162,7 +1279,6 @@
               if (currentItem) {
                   currentItem.prompt = promptInput.value;
               }
-              updateGenerateButtonState();
           });
           contentEl.appendChild(promptInput);
           
@@ -1178,6 +1294,10 @@
           if (item.status === 'generating-prompt') {
               genPromptBtn.disabled = true;
               genPromptBtn.textContent = 'Generating...';
+          }
+          if (!item.objectUrl) {
+              genPromptBtn.disabled = true;
+              genPromptBtn.title = 'An image is required to generate a prompt.';
           }
           promptActions.appendChild(genPromptBtn);
           contentEl.appendChild(promptActions);
@@ -1202,8 +1322,8 @@
     function removeItem(id) {
         const item = fileQueue.find(i => i.id === id);
         if (item) {
-            URL.revokeObjectURL(item.objectUrl);
-            logActivity(`Removed ${item.file.name} from queue.`);
+            if (item.objectUrl) URL.revokeObjectURL(item.objectUrl);
+            logActivity(`Removed ${item.file ? item.file.name : 'item'} from queue.`);
         }
         fileQueue = fileQueue.filter(item => item.id !== id);
         renderQueue();
@@ -1222,14 +1342,17 @@
           const base64 = await blobToBase64(file);
           const id = Date.now() + Math.random();
           const objectUrl = URL.createObjectURL(file);
-          fileQueue.push({ id, file, base64, objectUrl, status: 'queued', prompt: '' });
+          fileQueue.push({ id, file, base64, objectUrl, status: 'queued', prompt: '', selected: true });
       }
       renderQueue();
     }
 
     async function generatePromptForImage(itemId) {
       const item = fileQueue.find(i => i.id === itemId);
-      if (!item) return;
+      if (!item || !item.base64) {
+        logActivity(`Cannot generate prompt for item without an image.`);
+        return;
+      }
       
       const keyForPrompt = apiKeys.length > 0 ? apiKeys[0] : null;
       if (!keyForPrompt) {
